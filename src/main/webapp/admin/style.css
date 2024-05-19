@@ -1,0 +1,22 @@
+
+.bg-custom{
+	background-color: #5c6bc0;
+}
+.navbar .nav-item .nav-link:hover{
+	background-color: white; 
+	color:#303f9f;
+	border-radius: 15px;
+}
+.back-img{
+	background: url("img/bookimg.jpg");
+	height:50vh;
+	width:100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.custom-color{
+	color:silver;
+}
+.crd-ho:hover{
+	background-color: red;
+}
