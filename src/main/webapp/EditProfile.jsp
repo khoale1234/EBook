@@ -26,7 +26,7 @@
 						</c:if>
 						<c:if test="${not empty failedMsg }">
 							<p class="text-center text-danger">${failedMsg}</p>
-							<c:remove var="failed" scope="session"/>
+							<c:remove var="failedMsg" scope="session"/>
 						</c:if>
 						<form action="update_profile" method="post">
 							<input type="hidden" value="${userobj.getId()}" name="id">

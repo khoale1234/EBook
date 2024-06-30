@@ -30,9 +30,22 @@ public class AddOldBook extends HttpServlet{
 			boolean f=bookImp.AddBook(b);
 			HttpSession session = request.getSession();
 			if(f) {
-				String path=getServletContext().getRealPath("")+"all_components//book";
-				java.io.File file = new java.io.File(path);
-				part.write(path+java.io.File.separator+fileName);
+			      String path = getServletContext().getRealPath("") + "all_components" + java.io.File.separator + "book";
+			        
+			        // Debug: Print out the path
+			        System.out.println("File Path: " + path);
+
+			        // Create the directory if it does not exist
+			        java.io.File fileDir = new java.io.File(path);
+			        if (!fileDir.exists()) {
+			            fileDir.mkdirs();
+			        }
+
+			        // Write the file to the constructed path
+			        part.write(path + java.io.File.separator + fileName);
+
+			        // Debug: Confirm file write
+			        System.out.println("File written to: " + path + java.io.File.separator + fileName);
 				session.setAttribute("successMsg", "Book Add Successfully");
 				response.sendRedirect("sell_books.jsp");
 			}else {

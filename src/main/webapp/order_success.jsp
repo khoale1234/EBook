@@ -14,7 +14,7 @@
 	<h1>Thank for your order</h1>
 	<h5>Your product will be delivered in 7 days</h5>
 	<a href="index.jsp" class="btn btn-primary mt-3">Home</a>
-	<a href="user_order.jsp" class="btn btn-danger mt-3">View Order</a>
+	<a href="order.jsp" class="btn btn-danger mt-3">View Order</a>
 </div>
 </body>
 </html>

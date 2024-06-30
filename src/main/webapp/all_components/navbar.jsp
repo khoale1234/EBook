@@ -9,7 +9,7 @@
 		<div class="col-md-6">
 			<div class=col-md-6>
 				<form action="search.jsp" class="d-flex">
-					<input class="form-control me-2" type="search" placeholder="Search"
+					<input class="form-control me-2" type="search" placeholder="Type book'name or author to search"
 						aria-label="Search" name="search">
 					<button class="btn btn-primary" type="submit" >Search</button>
 				</form>
@@ -55,9 +55,8 @@
 					<li class="nav-item active"><a class="nav-link active" href="all_old_books.jsp"><i class="fa-solid fa-bookmark"></i> Old Book</a></li>
 				</ul>
 				<form class="d-flex">
-					<a></a>
 					<a href="setting.jsp" class="btn btn-light my-2 my-sm-0 p-2" type="submit" style="border-radius:15px "><i class="fa-solid fa-gear"></i> Setting</a> 
-					<button class="btn btn-light my-2 my-sm-0 p-2 ms-1" type="submit" style="border-radius:15px"><i class="fa-brands fa-rocketchat"></i></i> Contact Us</button>
+					<a href="helpline.jsp" class="btn btn-light my-2 my-sm-0 p-2" type="submit" style="border-radius:15px "><i class="fa-brands fa-rocketchat"></i> Contact us</a> 
 				</form>
 			</div>
 		</div>

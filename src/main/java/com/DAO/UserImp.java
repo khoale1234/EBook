@@ -63,7 +63,7 @@ public class UserImp implements UserDAO {
 	public boolean checkPassword(int id,String pw) {
 		boolean f=false;
 		try {
-			String sql="select * from user where userid=? and password=?";
+			String sql="select * from user where uid=? and password=?";
 			PreparedStatement ps= connection.prepareStatement(sql);
 			ps.setInt(1, id);
 			ps.setString(2, pw);
@@ -82,7 +82,7 @@ public class UserImp implements UserDAO {
 		
 		boolean create=false;
 		try {
-			String sql = "UPDATE user SET name=?, email=?, phone_no=? WHERE userid=?";
+			String sql = "UPDATE user SET name=?, email=?, phone_no=? WHERE uid=?";
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setString(1, user.getName());
 			ps.setString(2, user.getEmail());

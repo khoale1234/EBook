@@ -177,7 +177,7 @@ public class BookImp implements BookDAO {
 		List<Book_dtls> list= new ArrayList<Book_dtls>();
 		Book_dtls b=null;
 		try {
-			String sql="Select * from bookdtls where status=? order by bid DESC";
+			String sql="Select * from bookdtls where status=? order by bookId DESC";
 			PreparedStatement ps=connection.prepareStatement(sql);
 			ps.setString(1, "Active");
 			ResultSet rs=ps.executeQuery();

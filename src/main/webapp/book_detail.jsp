@@ -62,7 +62,7 @@
 				}else{
 					if(u!=null){
 				%>
-					<a href="cart?bid=?<%b.getBookID();%>&&uid=?<%=u.getId() %>" class="btn btn-sm btn-primary col-md-3"><i class="fas fa-cart-plus"></i> Add Cart</a>
+					<a href="cart?bid=<%= b.getBookID() %>&uid=<%= u.getId() %>" class="btn btn-sm btn-primary col-md-3"><i class="fas fa-cart-plus"></i> Add Cart</a>
 					<a href="" class="btn btn-sm btn-danger col-md-2"><i class="fa-solid fa-dollar-sign"></i> 5</a>
 					<%}else{ %>
 						<a href="" class="btn btn-sm btn-danger col-md-2"><i class="fa-solid fa-dollar-sign"></i> 5</a>

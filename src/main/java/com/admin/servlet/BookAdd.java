@@ -1,6 +1,8 @@
 package com.admin.servlet;
 
 import java.io.IOException;
+import java.nio.file.Paths;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -42,30 +44,71 @@ public class BookAdd extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			String bookName=request.getParameter("bname");
-			String author=request.getParameter("Aname");
-			String price=request.getParameter("bprice");
-			String categories=request.getParameter("btype");
-			String status=request.getParameter("bstatus");
-			Part part=request.getPart("bookimg");
-			String fileName=part.getSubmittedFileName();
-			Book_dtls b= new Book_dtls(bookName, author, price, categories, status, fileName,"admin");
-			BookImp bookImp= new BookImp(DBconnect.getConnection());
-			boolean f=bookImp.AddBook(b);
-			HttpSession session = request.getSession();
-			if(f) {
-				String path=getServletContext().getRealPath("")+"all_components//book";
-				java.io.File file = new java.io.File(path);
-				part.write(path+java.io.File.separator+fileName);
-				session.setAttribute("successMsg", "Book Add Successfully");
-				response.sendRedirect("admin/book_add.jsp");
-			}else {
-				session.setAttribute("failedMsg", "Something Wrong on Server");
-				response.sendRedirect("admin/book_add.jsp");
-			}
+		    // Get parameters from the request
+		    String bookName = request.getParameter("bname");
+		    String author = request.getParameter("Aname");
+		    String price = request.getParameter("bprice");
+		    String categories = request.getParameter("btype");
+		    String status = request.getParameter("bstatus");
+		    Part part = request.getPart("bookimg");
+		    String fileName = Paths.get(part.getSubmittedFileName()).getFileName().toString(); // Ensure only file name
+
+		    // Debug: Print out all parameters
+		    System.out.println("Book Name: " + bookName);
+		    System.out.println("Author: " + author);
+		    System.out.println("Price: " + price);
+		    System.out.println("Categories: " + categories);
+		    System.out.println("Status: " + status);
+		    System.out.println("File Name: " + fileName);
+
+		    // Create a Book_dtls object
+		    Book_dtls b = new Book_dtls(bookName, author, price, categories, status, fileName, "admin");
+
+		    // Create an instance of BookImp
+		    BookImp bookImp = new BookImp(DBconnect.getConnection());
+
+		    // Add the book to the database
+		    boolean f = bookImp.AddBook(b);
+
+		    // Get the session
+		    HttpSession session = request.getSession();
+
+		    // Check if the book was added successfully
+		    if (f) {
+		        // Construct the path where the file will be saved
+		        String path = getServletContext().getRealPath("") + "all_components" + java.io.File.separator + "book";
+		        
+		        // Debug: Print out the path
+		        System.out.println("File Path: " + path);
+
+		        // Create the directory if it does not exist
+		        java.io.File fileDir = new java.io.File(path);
+		        if (!fileDir.exists()) {
+		            fileDir.mkdirs();
+		        }
+
+		        // Write the file to the constructed path
+		        part.write(path + java.io.File.separator + fileName);
+
+		        // Debug: Confirm file write
+		        System.out.println("File written to: " + path + java.io.File.separator + fileName);
+
+		        // Set success message and redirect
+		        session.setAttribute("successMsg", "Book Add Successfully");
+		        response.sendRedirect("admin/book_add.jsp");
+		    } else {
+		        // Set failure message and redirect
+		        session.setAttribute("failedMsg", "Something Wrong on Server");
+		        response.sendRedirect("admin/book_add.jsp");
+		    }
 		} catch (Exception e) {
-			e.printStackTrace();
+		    e.printStackTrace();
+		    HttpSession session = request.getSession();
+		    session.setAttribute("failedMsg", "Exception: " + e.getMessage());
+		    response.sendRedirect("admin/book_add.jsp");
 		}
+
+
 	}
 
 }

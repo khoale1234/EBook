@@ -30,7 +30,7 @@
 		<div class="row p-3">
 			<%
 			BookImp bookImp2=new BookImp(DBconnect.getConnection());
-			List<Book_dtls> list2=bookImp2.getRecentBook();
+			List<Book_dtls> list2=bookImp2.getAllRecentBook();
 			for(Book_dtls b:list2){%>
 					<div class="col-md-3">
 				<div class="card crd-ho mt-3">

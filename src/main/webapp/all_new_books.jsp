@@ -58,25 +58,17 @@ to{
 </style>
 </head>
 <body>
+	<%@include file="all_components/navbar.jsp"%>
 	<%
 	User u= (User)session.getAttribute("userobj");
 	%>
-	<c:if test="${not empty addCart}">
-	<div id="toast">${addCart }</div>
-	<script type="text/javascript">
-		showToast();
-		function showToast(content)
-		{
-			$('#toast').addClass("display");
-			$('#toast').html(content);
-			setTimeout(() => {
-				$("#toast").removeClass	("display");
-			}, 2000);
-		}
-	</script>
-</c:if>
+	<c:if test="${not empty addCart }">
+						<h3 class="text-center text-success">${addCart}</h3>
+					</c:if>
+					<c:if test="${not empty failed }">
+						<h3 class="text-center text-danger">${failed}</h3>
+					</c:if>
 
-	<%@include file="all_components/navbar.jsp"%>
 	<div class="container-fluid">
 		<h3 class="text-center mt-2">New Book</h3>	
 		<div class="row p-3">
